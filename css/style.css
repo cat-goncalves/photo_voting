@@ -54,13 +54,12 @@ body {
   margin: 0.5rem;
 }
 
-.voteButton{
+.voteButton,
+.voteResults{
   width: 50%;
   text-align: center;
 }
 
 .voteResults {
   border: 1px solid violet;
-  width: 50%;
-  text-align: center;
 }
