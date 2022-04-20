@@ -1,0 +1,65 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  text-align: center;
+  position: fixed;
+  margin-top: 1rem;
+}
+
+#mainContainer {
+  width: 100%;
+  margin-top: 6rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.photoContainer {
+  margin: 1rem;
+}
+
+.photoTitle{
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.photo {
+  width: 450px;
+}
+
+.voteContainer{
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.voteButton,
+.voteResults{
+  width: 50%;
+  text-align: center;
+}
+
+.voteResults {
+  border: 1px solid violet;
+}
