@@ -24,11 +24,12 @@ const dbEntries = ["fish", "girl", "paddle", "zebra", "eagle", "boat"]
 let hasCastVote = localStorage.getItem("national-geographic-vote")
 let data
 
-//
+// event listener for every vote button
 document.querySelectorAll(".voteButton").forEach(element => {
   element.addEventListener("click", castVote)
 })
 
+// Firebase Syntax that allows us to create db entries
 function writeUserData(idNum, name) {
   const db = getDatabase();
   set(ref(db, 'data/' + name), {
@@ -45,22 +46,27 @@ function writeUserData(idNum, name) {
 // writeUserData(5, "eagle")
 // writeUserData(6, "boat")
 
-
+// Firebase onValue() method that loads db contents on page load
 onValue(dbRef, (snapshot) => {
     data = snapshot.val()
-
+    
+    // conditional of vote cast is inside so we are sure the data variable is assigned to db entries
+    // if true, button is removed to prevent user from voting twice
     if(hasCastVote == "true") {
       removeButton()
     }
 });
 
-
+// kicks off sequence of voting steps. The event target(button) value corresponds to photo name in db
+// updateVotes and storeVoteLocally called from here as steps 2 and 3
 function castVote(event) {
   let vote = event.target.value
   updateVotes(vote)
   storeVoteLocally()
 }
 
+// Firebase syntax for incrementing the matching db path
+// name is a parameter that holds the photo name taken from button click value
 function updateVotes(name) {
   const updates = {};
   updates[`data/${name}/votes`] = increment(1);
@@ -68,11 +74,15 @@ function updateVotes(name) {
   update(ref(db), updates);
 }
 
+// assigning the key for "national-geographic-vote" to the String value true
+// fires removeButton
 function storeVoteLocally() {
   localStorage.setItem("national-geographic-vote", "true")
   removeButton()
 }
 
+
+// Loops through each instance of .voteButton and deleted the (button) element
 function removeButton() {
   document.querySelectorAll(".voteButton").forEach(button => {
     button.remove()
@@ -80,6 +90,7 @@ function removeButton() {
   displayVotes()
 }
 
+// Loops through array of db entry name (dbEntries) and displays the corresponding results in the voting area
 function displayVotes() {
   dbEntries.forEach(photoName => {
     let resultsDiv = document.querySelector(`#${photoName}Results`)
