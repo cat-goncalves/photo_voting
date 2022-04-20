@@ -93,9 +93,8 @@ function removeButton() {
 // Loops through array of db entry name (dbEntries) and displays the corresponding results in the voting area
 function displayVotes() {
   dbEntries.forEach(photoName => {
-    let resultsDiv = document.querySelector(`#${photoName}Results`)
-    let p = document.createElement("p")
-    p.innerText = data[photoName].votes  + " out of " + data.totalVotes
-    resultsDiv.appendChild(p)
+    let resultsDisplay = document.querySelector(`#${photoName}Results`)
+    document.querySelector(`#${photoName}ResultsContainer`).classList.add("voteResults")
+    resultsDisplay.innerText = data[photoName].votes  + " out of " + data.totalVotes
   })
 }
